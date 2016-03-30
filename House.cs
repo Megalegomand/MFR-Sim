@@ -23,14 +23,14 @@ public class House : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (Random.Range (0, ctgo) < 1) {
-			humans[(int)(Random.Range (0,humans.Count-1))].;
+			humans[(int)(Random.Range (0,humans.Count-1))].SetActive(true);
 
 		}
 	}
 
-	public void OnTriggerEnter(Collider2D col) {
+	public void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.GetComponent<Human> () != null) {
-			col.gameObject. = false;
+			col.gameObject.SetActive (false);
 			humans.Add(col.gameObject);
 		}
 	}
