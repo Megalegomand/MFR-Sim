@@ -24,4 +24,6 @@ public class Human : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
 }
