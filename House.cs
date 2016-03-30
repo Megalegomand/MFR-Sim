@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class House : MonoBehaviour {
 
-	ArrayList humans = new ArrayList<GameObject>();
+	List<GameObject> humans = new List<GameObject>();
 	[Tooltip("Chance to get out")]
 	public int ctgo = 500;
+	public int infectChance = 100;
+	public int maxPerson = 10;
+	public int distWeight = 10;
 
 	// Use this for initialization
 	public void Start () {
@@ -19,14 +23,14 @@ public class House : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (Random.Range (0, ctgo) < 1) {
-			//humans[(int)(Random.Range (0,humans.Count-1))];
+			humans[(int)(Random.Range (0,humans.Count-1))].;
 
 		}
 	}
 
 	public void OnTriggerEnter(Collider2D col) {
 		if (col.gameObject.GetComponent<Human> () != null) {
-			col.enabled = false;
+			col.gameObject. = false;
 			humans.Add(col.gameObject);
 		}
 	}
