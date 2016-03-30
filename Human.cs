@@ -5,15 +5,17 @@ public class Human : MonoBehaviour {
     float rnd = 0;
     const int lim = 100;
     public bool vulnerable;
-    public bool vaccinated;
+    public bool autist;
     public bool sick;
     public int social;
 
-    public Human(int given_sick, int given_vulnerable, int given_vaccinated){
+    public Human(int given_sick, int given_vulnerable, int given_autist){
+        if(given_sick > lim)
+
         rnd = Random.Range(0, lim);
         vulnerable = rnd <= given_vulnerable;
         rnd = Random.Range(0, lim);
-        vaccinated = rnd <= given_vaccinated;
+        autist = rnd <= given_autist;
         rnd = Random.Range(0, lim);
         sick = rnd <= given_sick;
 
