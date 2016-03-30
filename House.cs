@@ -3,7 +3,7 @@ using System.Collections;
 
 public class House : MonoBehaviour {
 
-	ArrayList humans = new ArrayList();
+	ArrayList humans = new ArrayList<GameObject>();
 	[Tooltip("Chance to get out")]
 	public int ctgo = 500;
 
@@ -19,7 +19,7 @@ public class House : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (Random.Range (0, ctgo) < 1) {
-			humans[Random.Range (0,humans.Count)];
+			//humans[(int)(Random.Range (0,humans.Count-1))];
 
 		}
 	}
