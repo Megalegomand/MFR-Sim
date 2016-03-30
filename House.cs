@@ -28,7 +28,7 @@ public class House : MonoBehaviour {
 		}
 	}
 
-	public void OnTriggerEnter(Collider2D col) {
+	public void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.GetComponent<Human> () != null) {
 			col.gameObject.SetActive (false);
 			humans.Add(col.gameObject);
