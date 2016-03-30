@@ -8,22 +8,23 @@ public class House : MonoBehaviour {
 	public int ctgo = 500;
 
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
 	
 	}
 
 	void FixedUpdate() {
 		if (Random.Range (0, ctgo) < 1) {
-			humans[Random.Range(0,humans.Count)]
+			humans[Random.Range (0,humans.Count)];
+
 		}
 	}
 
-	void OnTriggerEnter(Collider2D col) {
+	public void OnTriggerEnter(Collider2D col) {
 		if (col.gameObject.GetComponent<Human> () != null) {
 			col.enabled = false;
 			humans.Add(col.gameObject);
