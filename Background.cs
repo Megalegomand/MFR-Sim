@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Background : MonoBehaviour {
 	
+	public static 
 
 	// Use this for initialization
 	void Start () {
