@@ -9,7 +9,7 @@ public class Human : MonoBehaviour {
     public bool sick;
     public int social;
 
-    public Human(int given_sick, int given_vulnerable, int given_autist){
+    public Human(int given_sick = 20, int given_vulnerable = 10, int given_autist = 80){
         if(given_sick > lim || given_sick < 0)
 
         rnd = Random.Range(0, lim);
