@@ -29,8 +29,10 @@ public class Human : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
+	void Move(int p) {
 
+	}
 }
