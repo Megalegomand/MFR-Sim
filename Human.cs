@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class Human : MonoBehaviour {
     float rnd = 0;
     const int lim = 100;
@@ -7,12 +8,14 @@ public class Human : MonoBehaviour {
     public bool autist;
     public bool sick;
     public int social;
+    string charc_model;
 
-    public Human(int given_sick = 20, int given_vulnerable = 10, int given_autist = 80){
-        if(given_sick > lim || given_sick < 0)
-        {
 
-        }
+    int given_sick = 20;
+    int given_vulnerable = 10;
+    int given_autist = 80;
+
+    void Awake(){  
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -20,18 +23,26 @@ public class Human : MonoBehaviour {
         vulnerable = rnd <= given_vulnerable && !autist;
 
         rnd = Random.Range(0, lim);
-        sick = rnd <= given_sick;
+        sick = rnd <= given_sick && !autist;
 
-        social = Random.Range(0, 5);        
+        social = Random.Range(0, 5);
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (sick && vulnerable)
+            spriteRenderer.sprite = syg_svag_person;
+        else if (sick)
+            spriteRenderer.sprite = syg_person;
+        else if (vulnerable)
+            spriteRenderer.sprite = svag_person;
+        else if (autist)
+            spriteRenderer.sprite = autist_person;
     }
-    // Use this for initialization
-    void Start() {
-
-	}
-
+    
     // Update is called once per frame
     void Update()
     {
+        
     }
 
 	void Move(int p) {
