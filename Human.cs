@@ -21,7 +21,7 @@ public class Human : MonoBehaviour {
     int given_vulnerable = 10;
     int given_autist = 20;
 
-    void Awake(){  
+    void Start(){  
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -33,14 +33,6 @@ public class Human : MonoBehaviour {
 
         social = Random.Range(0, 5);
 
-<<<<<<< HEAD
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
-=======
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         syg_person = Resources.Load<Sprite>("sygPerson");
@@ -60,17 +52,11 @@ public class Human : MonoBehaviour {
             spriteRenderer.sprite = person;
     }
     
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         
     }
->>>>>>> origin/master
 
 	void Move(int p) {
 
