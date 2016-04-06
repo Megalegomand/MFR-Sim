@@ -30,11 +30,7 @@ public class Human : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
 
-=======
-	    
->>>>>>> origin/master
 	}
 
 	void Move(int p) {
