@@ -10,7 +10,13 @@ public class Human : MonoBehaviour {
     public int social;
     string charc_model;
 
+    public Sprite syg_person = Resources.Load<Sprite>("sygPerson");
+    public Sprite syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
+    public Sprite autist_person = Resources.Load<Sprite>("Autist");
+    public Sprite svag_person = Resources.Load<Sprite>("svagPerson");
+    public Sprite person = Resources.Load<Sprite>("Person");
 
+    private SpriteRenderer spriteRenderer;
     int given_sick = 20;
     int given_vulnerable = 10;
     int given_autist = 80;
