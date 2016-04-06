@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Human : MonoBehaviour {
     float rnd = 0;
@@ -11,7 +10,9 @@ public class Human : MonoBehaviour {
 
     public Human(int given_sick = 20, int given_vulnerable = 10, int given_autist = 80){
         if(given_sick > lim || given_sick < 0)
+        {
 
+        }
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -32,6 +33,4 @@ public class Human : MonoBehaviour {
 	void Update () {
 	    
 	}
-
-
 }
