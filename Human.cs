@@ -32,15 +32,10 @@ public class Human : MonoBehaviour {
         sick = rnd <= given_sick && !autist && !vulnerable;
 
         social = Random.Range(0, 5);
-
-<<<<<<< HEAD
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-	}
-=======
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         syg_person = Resources.Load<Sprite>("sygPerson");
@@ -64,13 +59,6 @@ public class Human : MonoBehaviour {
     {
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
->>>>>>> origin/master
 
 	void Move(int p) {
 

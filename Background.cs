@@ -30,7 +30,11 @@ public class Background : MonoBehaviour {
 		foreach (int i in kj) {
 			Debug.Log(i);
 		}
-	}
+        Debug.Log("ddd");
+        foreach (int i in vis) {
+            Debug.Log(i);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -46,14 +50,15 @@ public class Background : MonoBehaviour {
 	}
 
 	public List<int> gps(int p1, int p2) {
-		p1 = this.p1;
-		p2 = this.p2;
+        this.p1 = p1;
+        this.p2 = p2;
+        Debug.Log(p1 + " " + p2);
 		for (int i = 0; i < n; i++) {
 			vis[i] = -1;
 		}
 		num = 0;
-		dfs (p1);
-		return findPath (p2);
+		dfs (p2);
+		return findPath (p1);
 	}
 
 	void dfs(int k) {
@@ -68,6 +73,7 @@ public class Background : MonoBehaviour {
 	}
 
 	List<int> findPath(int v) {
+        Debug.Log(v + ":" + vis[v]);
 		if (vis [v] == -1) {
 			Debug.Log ("if 1");
 			return new List<int> ();
