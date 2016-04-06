@@ -9,18 +9,19 @@ public class Human : MonoBehaviour {
     public bool sick;
     public int social;
 
-    public Human(int given_sick, int given_vulnerable, int given_autist){
-        if(given_sick > lim)
+    public Human(int given_sick = 20, int given_vulnerable = 10, int given_autist = 80){
+        if(given_sick > lim || given_sick < 0)
 
         rnd = Random.Range(0, lim);
-        vulnerable = rnd <= given_vulnerable;
-        rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
+
+        rnd = Random.Range(0, lim);
+        vulnerable = rnd <= given_vulnerable && !autist;
+
         rnd = Random.Range(0, lim);
         sick = rnd <= given_sick;
 
-        social = Random.Range(0, 5);
-        
+        social = Random.Range(0, 5);        
     }
     // Use this for initialization
     void Start() {
@@ -29,7 +30,11 @@ public class Human : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
 
+=======
+	    
+>>>>>>> origin/master
 	}
 
 	void Move(int p) {
