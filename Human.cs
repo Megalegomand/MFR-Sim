@@ -10,16 +10,16 @@ public class Human : MonoBehaviour {
     public int social;
     string charc_model;
 
-    public Sprite syg_person = Resources.Load<Sprite>("sygPerson");
-    public Sprite syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
-    public Sprite autist_person = Resources.Load<Sprite>("Autist");
-    public Sprite svag_person = Resources.Load<Sprite>("svagPerson");
-    public Sprite person = Resources.Load<Sprite>("Person");
+    public Sprite syg_person;
+    public Sprite syg_svag_person;
+    public Sprite autist_person;
+    public Sprite svag_person;
+    public Sprite person;
 
     private SpriteRenderer spriteRenderer;
     int given_sick = 20;
     int given_vulnerable = 10;
-    int given_autist = 80;
+    int given_autist = 20;
 
     void Awake(){  
         rnd = Random.Range(0, lim);
@@ -29,7 +29,7 @@ public class Human : MonoBehaviour {
         vulnerable = rnd <= given_vulnerable && !autist;
 
         rnd = Random.Range(0, lim);
-        sick = rnd <= given_sick && !autist;
+        sick = rnd <= given_sick && !autist && !vulnerable;
 
         social = Random.Range(0, 5);
 
@@ -43,16 +43,28 @@ public class Human : MonoBehaviour {
 =======
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (sick && vulnerable)
-            spriteRenderer.sprite = syg_svag_person;
-        else if (sick)
+        syg_person = Resources.Load<Sprite>("sygPerson");
+        syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
+        autist_person = Resources.Load<Sprite>("Autist");
+        svag_person = Resources.Load<Sprite>("svagPerson");
+        person = Resources.Load<Sprite>("Person");
+
+        
+        if (sick)
             spriteRenderer.sprite = syg_person;
         else if (vulnerable)
             spriteRenderer.sprite = svag_person;
         else if (autist)
             spriteRenderer.sprite = autist_person;
+        else
+            spriteRenderer.sprite = person;
     }
     
+    void Start()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
