@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System.Collections.Generic;
 
 public class Human : MonoBehaviour {
     float rnd = 0;
@@ -21,7 +21,18 @@ public class Human : MonoBehaviour {
     int given_vulnerable = 10;
     int given_autist = 20;
 
-    void Awake(){  
+    public int cp = 0;
+    public bool moving = false;
+    List<int> path;
+
+    public float range = 0.1f;
+    public float speed = 1f;
+
+    float mx, my;
+
+    bool TEMP = true;
+
+    void Awake() {
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -32,19 +43,30 @@ public class Human : MonoBehaviour {
         sick = rnd <= given_sick && !autist && !vulnerable;
 
         social = Random.Range(0, 5);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (!moving) {
+            bool bee = true;
+            while (bee) {
+                int num = Random.Range(0, Background.houses.Count);
+                if (num != cp) {
+                    bee = false;
+                    Move(Background.houses[num]);
+                }
+            }
+        }
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        syg_person = Resources.Load<Sprite>("sygPerson");
-        syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
-        autist_person = Resources.Load<Sprite>("Autist");
-        svag_person = Resources.Load<Sprite>("svagPerson");
-        person = Resources.Load<Sprite>("Person");
+        //syg_person = Resources.Load<Sprite>("sygPerson");
+        //syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
+        //autist_person = Resources.Load<Sprite>("Autist");
+        //svag_person = Resources.Load<Sprite>("svagPerson");
+        //person = Resources.Load<Sprite>("Person");
 
-        
+
         if (sick)
             spriteRenderer.sprite = syg_person;
         else if (vulnerable)
@@ -53,14 +75,38 @@ public class Human : MonoBehaviour {
             spriteRenderer.sprite = autist_person;
         else
             spriteRenderer.sprite = person;
+
+        if (moving) {
+            if (path.Count == 0) {
+                moving = false;
+            } else {
+                if (cp == path[0] && path.Count > 1) {
+                    path.RemoveAt(0);
+                    mx = Background.gms[path[0]].transform.position.x;
+                    my = Background.gms[path[0]].transform.position.y;
+                }
+                if (mx > transform.position.x - range && mx < transform.position.x + range && my > transform.position.y - range && my < transform.position.y + range) {
+                    path.RemoveAt(0);
+                    mx = Background.gms[path[0]].transform.position.x;
+                    my = Background.gms[path[0]].transform.position.y;
+                }
+                if (path.Count == 0) {
+                    moving = false;
+                }
+                if (!(mx == transform.position.x && my == transform.position.y)) {
+                    transform.position = Vector2.MoveTowards(transform.position, new Vector2(mx, my), speed * Time.deltaTime);
+                }
+            }
+        }
     }
-    
-    void Start()
-    {
+
+    void Start() {
 
     }
 
-	void Move(int p) {
-
-	}
+    void Move(int p) {
+        path = Background.gps(cp, p);
+        cp = p;
+        moving = true;
+    }
 }

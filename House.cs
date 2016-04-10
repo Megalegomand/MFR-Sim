@@ -11,8 +11,10 @@ public class House : MonoBehaviour {
 	public int maxPerson = 10;
 	public int distWeight = 10;
 
-	// Use this for initialization
-	public void Start () {
+    public int number;
+
+    // Use this for initialization
+    public void Start () {
 		
 	}
 	
@@ -22,16 +24,23 @@ public class House : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (Random.Range (0, ctgo) < 1) {
-			humans[(int)(Random.Range (0,humans.Count-1))].SetActive(true);
-
-		}
+        if (humans.Count != 0) {
+            if (Random.Range(0, ctgo) < 1) {
+                int k = (int)(Random.Range(0, humans.Count - 1));
+                humans[k].SetActive(true);
+                humans[k].GetComponent<Human>().moving = false;
+                humans[k].GetComponent<Human>().cp = number;
+                humans.RemoveAt(k);
+            }
+        }
 	}
 
 	public void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.GetComponent<Human> () != null) {
-			col.gameObject.SetActive (false);
-			humans.Add(col.gameObject);
+            if (col.GetComponent<Human>().moving) {
+                col.gameObject.SetActive(false);
+                humans.Add(col.gameObject);
+            }
 		}
 	}
 }

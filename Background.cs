@@ -7,32 +7,41 @@ public class Background : MonoBehaviour {
 	public static int n = 4;
 	public static List<int>[] points = new List<int>[n];
 	public static GameObject[] gms = new GameObject[n];
+    public static List<int> houses = new List<int>();
 
-	public GameObject[] gmss = new GameObject[n];
+	public GameObject[] gmss;
 
-	List<List<int>> paths = new List<List<int>>();
+	static List<List<int>> paths = new List<List<int>>();
 
-	int[] vis = new int[n];
-	int num = 0;
-	int p1, p2;
+	static int[] vis = new int[n];
+	static int num = 0;
 
 	// Use this for initialization
 	void Start () {
+        n = gmss.Length;
+        gms = new GameObject[n];
+        points = new List<int>[n];
+        vis = new int[n];
+        for (int i = 0; i < gmss.Length; i++) {
+            gms[i] = gmss[i];
+        }
 		for (int i = 0; i < n; i++) {
 			points[i] = new List<int>();
 		}
-		conPoint (0, 1);
-		conPoint (1, 2);
-		conPoint (2, 3);
+		conPoint (4, 5);
+		conPoint (5, 6);
+		conPoint (6, 7);
 
-		List<int> kj = gps (0,3);
-		Debug.Log ("Kage" + kj.Count);
-		foreach (int i in kj) {
-			Debug.Log(i);
-		}
-        Debug.Log("ddd");
-        foreach (int i in vis) {
-            Debug.Log(i);
+        conPoint(4, 0);
+        conPoint(5, 1);
+        conPoint(6, 2);
+        conPoint(7, 3);
+
+        for (int i = 0; i < gms.Length; i++) {
+            if (gms[i].GetComponent<House>() != null) {
+                gms[i].GetComponent<House>().number = i;
+                houses.Add(i);
+            }
         }
     }
 	
@@ -49,10 +58,7 @@ public class Background : MonoBehaviour {
 		points [p2].Add (p1);
 	}
 
-	public List<int> gps(int p1, int p2) {
-        this.p1 = p1;
-        this.p2 = p2;
-        Debug.Log(p1 + " " + p2);
+	public static List<int> gps(int p1, int p2) {
 		for (int i = 0; i < n; i++) {
 			vis[i] = -1;
 		}
@@ -61,7 +67,7 @@ public class Background : MonoBehaviour {
 		return findPath (p1);
 	}
 
-	void dfs(int k) {
+	static void dfs(int k) {
 		if (vis[k] != -1) {
 			return;
 		}
@@ -72,21 +78,17 @@ public class Background : MonoBehaviour {
 		}
 	}
 
-	List<int> findPath(int v) {
-        Debug.Log(v + ":" + vis[v]);
+	static List<int> findPath(int v) {
 		if (vis [v] == -1) {
-			Debug.Log ("if 1");
 			return new List<int> ();
 		}
 		if (vis[v] == 1) {
-			Debug.Log ("if 2");
 			List<int> k = new List<int>();
 			k.Add(v);
 			return k;
 		}
 		foreach (int w in points[v]) {
 			if (vis[w] < vis[v]) {
-				Debug.Log ("if 3");
 				List<int> k = new List<int>();
 				k.Add(v);
 				k.AddRange(findPath(w));
