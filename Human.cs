@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class Human : MonoBehaviour {
     float rnd = 0;
     const int lim = 100;
@@ -21,6 +20,10 @@ public class Human : MonoBehaviour {
     int given_vulnerable = 10;
     int given_autist = 20;
 
+
+    float height;
+    float width;
+    Camera cam;
     void Awake(){  
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
@@ -32,10 +35,7 @@ public class Human : MonoBehaviour {
         sick = rnd <= given_sick && !autist && !vulnerable;
 
         social = Random.Range(0, 5);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         syg_person = Resources.Load<Sprite>("sygPerson");
@@ -43,8 +43,6 @@ public class Human : MonoBehaviour {
         autist_person = Resources.Load<Sprite>("Autist");
         svag_person = Resources.Load<Sprite>("svagPerson");
         person = Resources.Load<Sprite>("Person");
-
-        
         if (sick)
             spriteRenderer.sprite = syg_person;
         else if (vulnerable)
@@ -53,6 +51,21 @@ public class Human : MonoBehaviour {
             spriteRenderer.sprite = autist_person;
         else
             spriteRenderer.sprite = person;
+
+        
+        cam = Camera.main;
+        height = 2f * cam.orthographicSize;
+        width = height * cam.aspect;
+        rnd = Random.Range(0, width);
+        set_x(rnd);
+        rnd = Random.Range(0, height);
+        set_y(rnd);
+        
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        
     }
     
     void Start()
@@ -63,4 +76,26 @@ public class Human : MonoBehaviour {
 	void Move(int p) {
 
 	}
+    
+    float get_x()
+    {
+        return transform.position.x;
+    }
+
+    public void set_x(float x)
+    {
+        float dummy = transform.position.y;
+        transform.position = new Vector3(x, dummy);
+    }
+
+    float get_y()
+    {
+        return transform.position.y;
+    }
+
+    public void set_y(float y)
+    {
+        float dummy = transform.position.x;
+        transform.position = new Vector3(dummy, y);
+    }
 }
