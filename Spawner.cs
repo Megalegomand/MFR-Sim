@@ -12,6 +12,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         make_bitches("Human", wallah_human);
+        make_bitches("House", wallah_hus);
     }
 
     // Update is called once per frame
