@@ -61,13 +61,13 @@ public class Human : MonoBehaviour {
         set_x(rnd);
         rnd = Random.Range(-height/2, height/2);
         set_y(rnd);
-        
-        
     }
 	
 	// Update is called once per frame
-	void Update () {
-        
+	void Update ()
+    {
+        if (sick && vulnerable)
+            spriteRenderer.sprite = syg_svag_person;
     }
     
     void Start()
@@ -77,23 +77,13 @@ public class Human : MonoBehaviour {
 
 	void Move(int p) {
 
-	}
-    
-    float get_x()
-    {
-        return transform.position.x;
-    }
+	}  
 
     public void set_x(float x)
     {
         float dummy = transform.position.y;
         transform.position = new Vector3(x, dummy);
-    }
-
-    float get_y()
-    {
-        return transform.position.y;
-    }
+    }  
 
     public void set_y(float y)
     {
