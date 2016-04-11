@@ -43,6 +43,7 @@ public class Human : MonoBehaviour {
         autist_person = Resources.Load<Sprite>("Autist");
         svag_person = Resources.Load<Sprite>("svagPerson");
         person = Resources.Load<Sprite>("Person");
+
         if (sick)
             spriteRenderer.sprite = syg_person;
         else if (vulnerable)
@@ -56,10 +57,11 @@ public class Human : MonoBehaviour {
         cam = Camera.main;
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
-        rnd = Random.Range(0, width);
+        rnd = Random.Range(-width/2, width/2);
         set_x(rnd);
-        rnd = Random.Range(0, height);
+        rnd = Random.Range(-height/2, height/2);
         set_y(rnd);
+        
         
     }
 	
