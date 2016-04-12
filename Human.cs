@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-<<<<<<< HEAD
 using System.Collections.Generic;
-=======
->>>>>>> origin/master
 
 public class Human : MonoBehaviour {
     float rnd = 0;
@@ -24,7 +21,6 @@ public class Human : MonoBehaviour {
     int given_vulnerable = 10;
     int given_autist = 20;
 
-<<<<<<< HEAD
     public int cp = 0;
     public bool moving = false;
     List<int> path;
@@ -36,14 +32,10 @@ public class Human : MonoBehaviour {
 
     bool TEMP = true;
 
-    void Awake() {
-=======
-
     float height;
     float width;
     Camera cam;
-    void Awake(){  
->>>>>>> origin/master
+    void Awake() {  
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -54,7 +46,6 @@ public class Human : MonoBehaviour {
         sick = rnd <= given_sick && !autist && !vulnerable;
 
         social = Random.Range(0, 5);
-<<<<<<< HEAD
     }
 
     // Update is called once per frame
@@ -69,8 +60,6 @@ public class Human : MonoBehaviour {
                 }
             }
         }
-=======
->>>>>>> origin/master
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -80,8 +69,6 @@ public class Human : MonoBehaviour {
         //svag_person = Resources.Load<Sprite>("svagPerson");
         //person = Resources.Load<Sprite>("Person");
 
-<<<<<<< HEAD
-
         if (sick) {
             if (vulnerable) {
                 spriteRenderer.sprite = syg_svag_person;
@@ -89,18 +76,14 @@ public class Human : MonoBehaviour {
                 spriteRenderer.sprite = syg_person;
             }
         } else if (vulnerable)
-=======
         if (sick)
             spriteRenderer.sprite = syg_person;
         else if (vulnerable)
->>>>>>> origin/master
             spriteRenderer.sprite = svag_person;
         else if (autist)
             spriteRenderer.sprite = autist_person;
         else
             spriteRenderer.sprite = person;
-
-<<<<<<< HEAD
         if (moving) {
             if (path.Count == 0) {
                 moving = false;
@@ -122,9 +105,7 @@ public class Human : MonoBehaviour {
                     transform.position = Vector2.MoveTowards(transform.position, new Vector2(mx, my), speed * Time.deltaTime);
                 }
             }
-        }
-=======
-        
+        }      
         cam = Camera.main;
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
@@ -132,19 +113,11 @@ public class Human : MonoBehaviour {
         set_x(rnd);
         rnd = Random.Range(-height/2, height/2);
         set_y(rnd);
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (sick && vulnerable)
+        if (sick && vulnerable) {
             spriteRenderer.sprite = syg_svag_person;
->>>>>>> origin/master
+        }
     }
 
-    void Start() {
-
-    }
 
     void Move(int p) {
         path = Background.gps(cp, p);
@@ -157,7 +130,6 @@ public class Human : MonoBehaviour {
             sick = true;
         }
 
-<<<<<<< HEAD
         if (sick) {
             if (vulnerable) {
                 spriteRenderer.sprite = syg_svag_person;
@@ -170,7 +142,6 @@ public class Human : MonoBehaviour {
             spriteRenderer.sprite = autist_person;
         else
             spriteRenderer.sprite = person;
-=======
 	}  
 
     public void set_x(float x)
@@ -183,6 +154,5 @@ public class Human : MonoBehaviour {
     {
         float dummy = transform.position.x;
         transform.position = new Vector3(dummy, y);
->>>>>>> origin/master
     }
 }

@@ -12,12 +12,9 @@ public class House : MonoBehaviour {
 	public int distWeight = 10;
     public int infectedAmount = 0;
 
-<<<<<<< HEAD
     public int number;
 
-    // Use this for initialization
-    public void Start () {
-=======
+
     // Jacobs shit
     float rnd = 0;
     float height;
@@ -25,12 +22,6 @@ public class House : MonoBehaviour {
     Camera cam;
     public Sprite hus;
     private SpriteRenderer spriteRenderer;
-    // Use this for initialization
-    public void Start ()
-    {
->>>>>>> origin/master
-		
-	}
 	
     public void Awake()
     {
