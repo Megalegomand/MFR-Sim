@@ -10,6 +10,7 @@ public class House : MonoBehaviour {
 	public int infectChance = 100;
 	public int maxPerson = 10;
 	public int distWeight = 10;
+    public int infectedAmount = 0;
 
     public int number;
 
@@ -28,8 +29,14 @@ public class House : MonoBehaviour {
             if (Random.Range(0, ctgo) < 1) {
                 int k = (int)(Random.Range(0, humans.Count - 1));
                 humans[k].SetActive(true);
+                if (humans[k].GetComponent<Human>().sick) {
+                    infectedAmount--;
+                }
                 humans[k].GetComponent<Human>().moving = false;
                 humans[k].GetComponent<Human>().cp = number;
+                if (Random.Range(0, infectChance) == 1 && infectedAmount > 0) {
+                    humans[k].GetComponent<Human>().infect();
+                }
                 humans.RemoveAt(k);
             }
         }
@@ -38,6 +45,9 @@ public class House : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.GetComponent<Human> () != null) {
             if (col.GetComponent<Human>().moving) {
+                if (col.GetComponent<Human>().sick) {
+                    infectedAmount++;
+                }
                 col.gameObject.SetActive(false);
                 humans.Add(col.gameObject);
             }

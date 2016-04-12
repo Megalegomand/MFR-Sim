@@ -67,9 +67,13 @@ public class Human : MonoBehaviour {
         //person = Resources.Load<Sprite>("Person");
 
 
-        if (sick)
-            spriteRenderer.sprite = syg_person;
-        else if (vulnerable)
+        if (sick) {
+            if (vulnerable) {
+                spriteRenderer.sprite = syg_svag_person;
+            } else {
+                spriteRenderer.sprite = syg_person;
+            }
+        } else if (vulnerable)
             spriteRenderer.sprite = svag_person;
         else if (autist)
             spriteRenderer.sprite = autist_person;
@@ -108,5 +112,24 @@ public class Human : MonoBehaviour {
         path = Background.gps(cp, p);
         cp = p;
         moving = true;
+    }
+
+    public void infect() {
+        if (!autist) {
+            sick = true;
+        }
+
+        if (sick) {
+            if (vulnerable) {
+                spriteRenderer.sprite = syg_svag_person;
+            } else {
+                spriteRenderer.sprite = syg_person;
+            }
+        } else if (vulnerable)
+            spriteRenderer.sprite = svag_person;
+        else if (autist)
+            spriteRenderer.sprite = autist_person;
+        else
+            spriteRenderer.sprite = person;
     }
 }
