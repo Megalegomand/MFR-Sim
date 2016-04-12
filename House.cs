@@ -12,13 +12,43 @@ public class House : MonoBehaviour {
 	public int distWeight = 10;
     public int infectedAmount = 0;
 
+<<<<<<< HEAD
     public int number;
 
     // Use this for initialization
     public void Start () {
+=======
+    // Jacobs shit
+    float rnd = 0;
+    float height;
+    float width;
+    Camera cam;
+    public Sprite hus;
+    private SpriteRenderer spriteRenderer;
+    // Use this for initialization
+    public void Start ()
+    {
+>>>>>>> origin/master
 		
 	}
 	
+    public void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        hus = Resources.Load<Sprite>("Hus#1");
+        spriteRenderer.sprite = hus;
+
+        
+        cam = Camera.main;
+        height = 2f * cam.orthographicSize;
+        width = height * cam.aspect;
+        rnd = Random.Range(-width / 2, width / 2);
+        set_x(rnd);
+        rnd = Random.Range(-height / 2, height / 2);
+        set_y(rnd);
+        
+    }
+
 	// Update is called once per frame
 	public void Update () {
 	
@@ -53,4 +83,16 @@ public class House : MonoBehaviour {
             }
 		}
 	}
+
+    public void set_x(float x)
+    {
+        float dummy = transform.position.y;
+        transform.position = new Vector3(x, dummy);
+    }
+
+    public void set_y(float y)
+    {
+        float dummy = transform.position.x;
+        transform.position = new Vector3(dummy, y);
+    }
 }
