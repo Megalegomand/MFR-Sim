@@ -20,15 +20,16 @@ public class Human : MonoBehaviour {
     int given_vulnerable = 10;
     int given_autist = 20;
 
-<<<<<<< HEAD
-    void Start(){  
-=======
+
+     
+
 
     float height;
     float width;
     Camera cam;
-    void Awake(){  
->>>>>>> origin/master
+    void Awake()
+    { 
+
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -74,18 +75,9 @@ public class Human : MonoBehaviour {
             spriteRenderer.sprite = syg_svag_person;
     }
     
-<<<<<<< HEAD
+
     // Update is called once per frame
-    void Update()
-    {
-        
-=======
-    void Start()
-    {
-
->>>>>>> origin/master
-    }
-
+    
 	void Move(int p) {
 
 	}  
