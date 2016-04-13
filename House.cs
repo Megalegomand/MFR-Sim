@@ -24,16 +24,13 @@ public class House : MonoBehaviour {
     /*
     public Sprite hus;
     private SpriteRenderer spriteRenderer;
-<<<<<<< HEAD
-=======
     */
     // Use this for initialization
     public void Start ()
     {
 		
 	}
->>>>>>> origin/master
-	
+
     public void Awake()
     {
         /*
