@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
+    { 
         make_bitches("Human", wallah_human);
         make_bitches("House", wallah_hus);
     }
