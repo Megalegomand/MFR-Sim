@@ -43,11 +43,14 @@ public class Human : MonoBehaviour {
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        /*
         syg_person = Resources.Load<Sprite>("sygPerson");
         syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
         autist_person = Resources.Load<Sprite>("Autist");
         svag_person = Resources.Load<Sprite>("svagPerson");
         person = Resources.Load<Sprite>("Person");
+        */
+
 
         if (sick)
             spriteRenderer.sprite = syg_person;

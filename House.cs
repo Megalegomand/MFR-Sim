@@ -16,8 +16,11 @@ public class House : MonoBehaviour {
     float height;
     float width;
     Camera cam;
+
+    /*
     public Sprite hus;
     private SpriteRenderer spriteRenderer;
+    */
     // Use this for initialization
     public void Start ()
     {
@@ -26,10 +29,11 @@ public class House : MonoBehaviour {
 	
     public void Awake()
     {
+        /*
         spriteRenderer = GetComponent<SpriteRenderer>();
         hus = Resources.Load<Sprite>("Hus#1");
         spriteRenderer.sprite = hus;
-
+        */
         
         cam = Camera.main;
         height = 2f * cam.orthographicSize;

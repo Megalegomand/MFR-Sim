@@ -7,11 +7,15 @@ public class Spawner : MonoBehaviour
 
     public int wallah_hus;
     public int wallah_human;
+
+    public Transform human;
+    public Transform house;
+
     // Use this for initialization
     void Start()
     {
         make_bitches("Human", wallah_human);
-        make_bitches("House", wallah_hus);        
+        make_bitches("House", wallah_hus);
     }
 
     // Update is called once per frame
@@ -23,21 +27,33 @@ public class Spawner : MonoBehaviour
     void make_bitches(string bitches, int wallah)
     {
         GameObject obj_dummy;
-
-        for (int iii = 0; iii < wallah; ++iii)
+        if (bitches == "Human")
         {
-            obj_dummy = new GameObject(bitches + iii);
-            obj_dummy.AddComponent<SpriteRenderer>();
-            obj_dummy.AddComponent(System.Type.GetType(bitches));
+            for (int iii = 0; iii < wallah; ++iii)
+            {
+                /*obj_dummy = new GameObject(bitches + iii);
+                obj_dummy.AddComponent<SpriteRenderer>();
+                obj_dummy.AddComponent(System.Type.GetType(bitches));*/
+                obj_dummy = Instantiate(human).gameObject;               
+            }
+        }
+        else if(bitches == "House")
+        {
+            for (int iii = 0; iii < wallah; ++iii)
+            {
+                /*obj_dummy = new GameObject(bitches + iii);
+                obj_dummy.AddComponent<SpriteRenderer>();
+                obj_dummy.AddComponent(System.Type.GetType(bitches));*/
+                obj_dummy = Instantiate(house).gameObject;
+            }
         }
     }
 
 
-    void delete_bitches(string bitches, int wallah)
+    void delete_bitches(string bitches)
     {
-        for(int iii = 0; iii < wallah; ++iii)
-        {
-            Destroy(GameObject.Find(bitches + iii));
-        }
+        GameObject[] chala = GameObject.FindGameObjectsWithTag(bitches);
+        for (int iii = 0; iii < chala.Length; ++iii)
+            Destroy(chala[iii]);
     }
 }
