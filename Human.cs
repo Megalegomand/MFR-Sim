@@ -72,8 +72,7 @@ public class Human : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update ()
-    {
+	void Update () {
         if (sick && vulnerable)
             spriteRenderer.sprite = syg_svag_person;
     }
@@ -85,8 +84,7 @@ public class Human : MonoBehaviour {
 
 	}  
 
-    public void set_x(float x)
-    {
+    public void set_x(float x) {
         float dummy = transform.position.y;
         transform.position = new Vector3(x, dummy);
     }  
