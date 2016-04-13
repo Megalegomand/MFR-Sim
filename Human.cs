@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class Human : MonoBehaviour {
     float rnd = 0;
     const int lim = 100;
@@ -21,7 +20,15 @@ public class Human : MonoBehaviour {
     int given_vulnerable = 10;
     int given_autist = 20;
 
+<<<<<<< HEAD
     void Start(){  
+=======
+
+    float height;
+    float width;
+    Camera cam;
+    void Awake(){  
+>>>>>>> origin/master
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -41,7 +48,6 @@ public class Human : MonoBehaviour {
         svag_person = Resources.Load<Sprite>("svagPerson");
         person = Resources.Load<Sprite>("Person");
 
-        
         if (sick)
             spriteRenderer.sprite = syg_person;
         else if (vulnerable)
@@ -50,15 +56,49 @@ public class Human : MonoBehaviour {
             spriteRenderer.sprite = autist_person;
         else
             spriteRenderer.sprite = person;
+
+        
+        cam = Camera.main;
+        height = 2f * cam.orthographicSize;
+        width = height * cam.aspect;
+        rnd = Random.Range(-width/2, width/2);
+        set_x(rnd);
+        rnd = Random.Range(-height/2, height/2);
+        set_y(rnd);
+    }
+	
+	// Update is called once per frame
+	void Update ()
+    {
+        if (sick && vulnerable)
+            spriteRenderer.sprite = syg_svag_person;
     }
     
+<<<<<<< HEAD
     // Update is called once per frame
     void Update()
     {
         
+=======
+    void Start()
+    {
+
+>>>>>>> origin/master
     }
 
 	void Move(int p) {
 
-	}
+	}  
+
+    public void set_x(float x)
+    {
+        float dummy = transform.position.y;
+        transform.position = new Vector3(x, dummy);
+    }  
+
+    public void set_y(float y)
+    {
+        float dummy = transform.position.x;
+        transform.position = new Vector3(dummy, y);
+    }
 }
