@@ -32,10 +32,19 @@ public class Human : MonoBehaviour {
 
     bool TEMP = true;
 
+     
+
+
     float height;
     float width;
     Camera cam;
+<<<<<<< HEAD
     void Awake() {  
+=======
+    void Awake()
+    { 
+
+>>>>>>> origin/master
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -61,7 +70,18 @@ public class Human : MonoBehaviour {
             }
         }
 
+<<<<<<< HEAD
         spriteRenderer = GetComponent<SpriteRenderer>();
+=======
+        /*
+        syg_person = Resources.Load<Sprite>("sygPerson");
+        syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
+        autist_person = Resources.Load<Sprite>("Autist");
+        svag_person = Resources.Load<Sprite>("svagPerson");
+        person = Resources.Load<Sprite>("Person");
+        */
+
+>>>>>>> origin/master
 
         //syg_person = Resources.Load<Sprite>("sygPerson");
         //syg_svag_person = Resources.Load<Sprite>("sygSvagPerson");
@@ -113,10 +133,19 @@ public class Human : MonoBehaviour {
         set_x(rnd);
         rnd = Random.Range(-height/2, height/2);
         set_y(rnd);
+<<<<<<< HEAD
         if (sick && vulnerable) {
+=======
+    }
+	
+	// Update is called once per frame
+	void Update () {
+        if (sick && vulnerable)
+>>>>>>> origin/master
             spriteRenderer.sprite = syg_svag_person;
         }
     }
+<<<<<<< HEAD
 
 
     void Move(int p) {
@@ -124,6 +153,13 @@ public class Human : MonoBehaviour {
         cp = p;
         moving = true;
     }
+=======
+    
+
+    // Update is called once per frame
+    
+	void Move(int p) {
+>>>>>>> origin/master
 
     public void infect() {
         if (!autist) {
@@ -144,8 +180,7 @@ public class Human : MonoBehaviour {
             spriteRenderer.sprite = person;
 	}  
 
-    public void set_x(float x)
-    {
+    public void set_x(float x) {
         float dummy = transform.position.y;
         transform.position = new Vector3(x, dummy);
     }  
