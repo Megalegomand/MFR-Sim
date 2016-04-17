@@ -39,13 +39,13 @@ public class House : MonoBehaviour {
         spriteRenderer.sprite = hus;
         */
         
-        cam = Camera.main;
+        /*cam = Camera.main;
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
         rnd = Random.Range(-width / 2, width / 2);
         set_x(rnd);
         rnd = Random.Range(-height / 2, height / 2);
-        set_y(rnd);
+        set_y(rnd);*/
         
     }
 
