@@ -19,7 +19,7 @@ public class Background : MonoBehaviour {
 	static int num = 0;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         /*
         n = gmss.Length;
         gms = new GameObject[n];

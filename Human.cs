@@ -39,7 +39,7 @@ public class Human : MonoBehaviour {
     float width;
     Camera cam;
 
-    void Awake()
+    void Start()
     {
         path = new List<int>();
         
@@ -53,19 +53,26 @@ public class Human : MonoBehaviour {
         sick = rnd <= given_sick && !autist && !vulnerable;
 
         social = Random.Range(0, 5);
+        test();
+        mx = Background.gms[path[0]].transform.position.x;
+        my = Background.gms[path[0]].transform.position.y;
+    }
+
+    void test() {
+        bool bee = true;
+        while (bee) {
+            int num = Random.Range(0, Background.houses.Count);
+            if (num != cp) {
+                bee = false;
+                Move(Background.houses[num]);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update() {
         if (!moving) {
-            bool bee = true;
-            while (bee) {
-                int num = Random.Range(0, Background.houses.Count);
-                if (num != cp) {
-                    bee = false;
-                    Move(Background.houses[num]);
-                }
-            }
+            test();
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
