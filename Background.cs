@@ -9,7 +9,9 @@ public class Background : MonoBehaviour {
 	public static GameObject[] gms = new GameObject[n];
     public static List<int> houses = new List<int>();
 
-	public GameObject[] gmss;
+	//public GameObject[] gmss;
+
+    public GameObject stuff;
 
 	static List<List<int>> paths = new List<List<int>>();
 
@@ -18,6 +20,7 @@ public class Background : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        /*
         n = gmss.Length;
         gms = new GameObject[n];
         points = new List<int>[n];
@@ -27,15 +30,40 @@ public class Background : MonoBehaviour {
         }
 		for (int i = 0; i < n; i++) {
 			points[i] = new List<int>();
-		}
-		conPoint (4, 5);
-		conPoint (5, 6);
-		conPoint (6, 7);
+		}*/
 
-        conPoint(4, 0);
-        conPoint(5, 1);
-        conPoint(6, 2);
-        conPoint(7, 3);
+        n = stuff.transform.childCount;
+        gms = new GameObject[n];
+        points = new List<int>[n];
+        vis = new int[n];
+        for (int i = 0; i < stuff.transform.childCount; i++) {
+            gms[i] = stuff.transform.GetChild(i).gameObject;
+        }
+
+        for (int i = 0; i < n; i++) {
+            points[i] = new List<int>();
+        }
+
+        int kage = 0;
+        foreach (GameObject gm in gms) {
+            Vector3 pos1 = gm.transform.position + new Vector3(1, 0);
+            Vector3 pos2 = gm.transform.position + new Vector3(-1, 0);
+            Vector3 pos3 = gm.transform.position + new Vector3(0, 1);
+            Vector3 pos4 = gm.transform.position + new Vector3(0, -1);
+            int andekage = 0;
+            foreach (GameObject check in gms) {
+                if (check.transform.position == pos1 || check.transform.position == pos2 || check.transform.position == pos3 || check.transform.position == pos4) {
+                    if (check.tag.Equals("Respawn")) {
+                        if (gm.GetComponent<House>() != null && check.GetComponent<House>() != null) {
+                        } else {
+                            points[andekage].Add(kage);
+                        }
+                    }
+                }
+                andekage++;
+            }
+            kage++;
+        }
 
         for (int i = 0; i < gms.Length; i++) {
             if (gms[i].GetComponent<House>() != null) {

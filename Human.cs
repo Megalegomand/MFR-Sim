@@ -40,7 +40,9 @@ public class Human : MonoBehaviour {
     Camera cam;
 
     void Awake()
-    { 
+    {
+        path = new List<int>();
+        
         rnd = Random.Range(0, lim);
         autist = rnd <= given_autist;
 
@@ -98,6 +100,9 @@ public class Human : MonoBehaviour {
         else
             spriteRenderer.sprite = person;
         if (moving) {
+            if (path == null) {
+                moving = false;
+            }
             if (path.Count == 0) {
                 moving = false;
             } else {
