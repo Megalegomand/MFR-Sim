@@ -10,6 +10,10 @@ public class House : MonoBehaviour {
 	public int infectChance = 100;
 	public int maxPerson = 10;
 	public int distWeight = 10;
+    public int infectedAmount = 0;
+
+    public int number;
+
 
     // Jacobs shit
     float rnd = 0;
@@ -26,7 +30,7 @@ public class House : MonoBehaviour {
     {
 		
 	}
-	
+
     public void Awake()
     {
         /*
@@ -35,13 +39,13 @@ public class House : MonoBehaviour {
         spriteRenderer.sprite = hus;
         */
         
-        cam = Camera.main;
+        /*cam = Camera.main;
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
         rnd = Random.Range(-width / 2, width / 2);
         set_x(rnd);
         rnd = Random.Range(-height / 2, height / 2);
-        set_y(rnd);
+        set_y(rnd);*/
         
     }
 
@@ -51,16 +55,32 @@ public class House : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (Random.Range (0, ctgo) < 1) {
-			humans[(int)(Random.Range (0,humans.Count-1))].SetActive(true);
-
-		}
+        if (humans.Count != 0) {
+            if (Random.Range(0, ctgo) < 1) {
+                int k = (int)(Random.Range(0, humans.Count - 1));
+                humans[k].SetActive(true);
+                if (humans[k].GetComponent<Human>().sick) {
+                    infectedAmount--;
+                }
+                humans[k].GetComponent<Human>().moving = false;
+                humans[k].GetComponent<Human>().cp = number;
+                if (Random.Range(0, infectChance) == 1 && infectedAmount > 0) {
+                    humans[k].GetComponent<Human>().infect();
+                }
+                humans.RemoveAt(k);
+            }
+        }
 	}
 
 	public void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.GetComponent<Human> () != null) {
-			col.gameObject.SetActive (false);
-			humans.Add(col.gameObject);
+            if (col.GetComponent<Human>().moving) {
+                if (col.GetComponent<Human>().sick) {
+                    infectedAmount++;
+                }
+                col.gameObject.SetActive(false);
+                humans.Add(col.gameObject);
+            }
 		}
 	}
 
