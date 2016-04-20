@@ -20,6 +20,7 @@ public class Background : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		Time.timeScale = 1;
         /*
         n = gmss.Length;
         gms = new GameObject[n];
