@@ -101,7 +101,7 @@ public class Background : MonoBehaviour {
         // Numeret som punkterne for sættes til 0 (L i flowdiagrammet)
 		num = 0;
         // Der bliver kørt en dybde først søgning fra punktet p2 (B i flowdiagrammet)
-		dfs (p2);
+		ripple_dfs(p2);
         // Herefter køres findPath der finder en vej fra p1 (A) til p2 (B)
 		return findPath (p1);
 	}
@@ -123,8 +123,23 @@ public class Background : MonoBehaviour {
 		}
 	}
 
+    static void ripple_dfs(int punkt, int rippleNr = 1) {
+        // Check at punktet ikke har været besøgt, eller har et lavere tal end det forrige
+        if (vis[punkt] != -1 && vis[punkt] < rippleNr) {
+            return;
+        }
+        // Giv det nuværende punkt et nummer
+        vis[punkt] = rippleNr;
+        rippleNr++;
+        // Kør igennem alle punkterne omkring det nuværende punkt
+        foreach (int i in points[punkt]) {
+            // Kør en Dybde Først Søgning fra alle punkter omkring det nuværende punkt
+            ripple_dfs(i, rippleNr);
+        }
+    }
+
     // Find en vej fra p1/v (A) til p2 (B)
-	static List<int> findPath(int v) {
+    static List<int> findPath(int v) {
         // Hvis punktet man prøver at komme hen til ikke er besøgt
         // så er der ikke en vej til punktet
         // Derfor returneres en tom liste
